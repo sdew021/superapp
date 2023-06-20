@@ -9,8 +9,8 @@ export const Stopwatch = () => {
     let interval = null;
     if (active && !paused) {
       interval = setInterval(() => {
-        setTime((time) => time + 1);
-      }, 1000);
+        setTime((time) => time + 10);
+      }, 10);
     } else {
       clearInterval(interval);
     }
@@ -43,12 +43,15 @@ export const Stopwatch = () => {
   );
 };
 
-// return time in the format 10h:02m:35s
+// return time in the format 10h:02m:35s:100ms
 const TimeView = (props) => {
   const time = props.time;
   return (
     <div>
-      {Math.floor(time / 3600)}h:{Math.floor(time / 60) % 60}m:{time % 60}s
+      {Math.floor(time / 3600000)}h:
+      {Math.floor(time / 60000) % 60}m:
+      {Math.floor(time / 1000) % 60}s:
+      {Math.floor(time / 10) % 100}ms
     </div>
   );
 };
